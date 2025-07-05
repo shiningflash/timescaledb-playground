@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./images/timescale_icon.svg" alt="TimescaleDB Logo" width="200"/>
+  <img src="./images/timescale_icon.svg" alt="TimescaleDB Logo" width="400"/>
 </p>
 
 # timescaledb-playground
@@ -46,13 +46,13 @@ A complete, step-by-step solution for storing, analyzing, compressing, and visua
 
 ---
 
-# 📦 Apps Coming Soon
+# Apps Coming Soon
 
 New apps demonstrating:
 
-✅ IoT sensor data storage and querying
-✅ Real-time energy monitoring with TimescaleDB
-✅ Fun visualization projects using TimescaleDB with animations
+- 📦 IoT sensor data storage and querying
+- 📦 Real-time energy monitoring with TimescaleDB
+- 📦 Fun visualization projects using TimescaleDB with animations
 
 Stay tuned for more hands-on projects!
 
