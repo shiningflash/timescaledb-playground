@@ -111,3 +111,195 @@ ORDER BY bucket;
 ![Candlestick Chart Example](./preview/grafana_candlestick.png)
 
 ---
+
+Understood. You want technical clarity with **what the query does, key points, and details clearly explained *before*** the SQL block, and no vague "technical notes" at the end. Here's the rewritten **Additional Essential Queries** section in your desired structured, precise, beginner-friendly style:
+
+---
+
+## Additional Essential Queries for Financial Tick Data (Clear Explanations)
+
+The following examples demonstrate important queries using TimescaleDB for financial datasets. Each section explains the **purpose**, the **logic**, and essential details before showing the actual SQL.
+
+---
+
+### 1. Calculate a 7-Day Simple Moving Average (SMA)
+
+**Purpose:**
+Compute the average closing price over a sliding window of the last 7 days, commonly used in financial analysis to smooth short-term price fluctuations.
+
+**Key Details:**
+
+* Uses `AVG()` window function for rolling average
+* `PARTITION BY symbol` ensures separate SMA per crypto symbol
+* `ROWS BETWEEN 6 PRECEDING AND CURRENT ROW` defines a 7-row sliding window
+* Assumes one row per day (use with daily aggregates like `one_day_candle`)
+
+**Query:**
+
+```sql
+SELECT
+    bucket,
+    symbol,
+    AVG("close") OVER (
+        PARTITION BY symbol
+        ORDER BY bucket
+        ROWS BETWEEN 6 PRECEDING AND CURRENT ROW
+    ) AS sma_7
+FROM one_day_candle
+WHERE symbol = 'BTC/USD'
+ORDER BY bucket;
+```
+
+---
+
+### 2. Rolling 7-Day Price Volatility (Standard Deviation)
+
+**Purpose:**
+Measure daily price volatility based on the high-low price range within the last 7 days.
+
+**Key Details:**
+
+* Calculates standard deviation of `high - low` using `STDDEV_POP()`
+* Helps understand how much price fluctuates within a time window
+* Uses same sliding window logic as SMA
+
+**Query:**
+
+```sql
+SELECT
+    bucket,
+    symbol,
+    STDDEV_POP(high - low) OVER (
+        PARTITION BY symbol
+        ORDER BY bucket
+        ROWS BETWEEN 6 PRECEDING AND CURRENT ROW
+    ) AS volatility_7
+FROM one_day_candle
+WHERE symbol = 'BTC/USD'
+ORDER BY bucket;
+```
+
+---
+
+### 3. Total Daily Trading Volume (Per Symbol or Globally)
+
+**Purpose:**
+Aggregate daily traded volume to track market activity per symbol or across all assets.
+
+**Per Symbol (BTC/USD example):**
+
+```sql
+SELECT
+    bucket,
+    symbol,
+    SUM(day_volume) AS total_volume
+FROM one_day_candle
+WHERE symbol = 'BTC/USD'
+GROUP BY bucket, symbol
+ORDER BY bucket;
+```
+
+**All Symbols Combined:**
+
+```sql
+SELECT
+    bucket,
+    SUM(day_volume) AS total_volume_all_symbols
+FROM one_day_candle
+GROUP BY bucket
+ORDER BY bucket;
+```
+
+**Key Details:**
+
+* Uses simple `SUM()` aggregation per time bucket
+* For global totals, omit `symbol` from `GROUP BY`
+
+---
+
+### 4. Day-over-Day Percentage Price Change
+
+**Purpose:**
+Calculate the daily percentage change in closing price, showing market movement in relative terms.
+
+**Key Details:**
+
+* `LAG()` retrieves previous day's closing price
+* Formula: `((current - previous) / previous) * 100`
+* Rounded to 2 decimals for clarity
+
+**Query:**
+
+```sql
+SELECT
+    bucket,
+    symbol,
+    ROUND(
+        100 * (
+            ("close" - LAG("close") OVER (PARTITION BY symbol ORDER BY bucket))
+            / LAG("close") OVER (PARTITION BY symbol ORDER BY bucket)
+        )::numeric, 2
+    ) AS pct_change
+FROM one_day_candle
+WHERE symbol = 'BTC/USD'
+ORDER BY bucket;
+```
+
+---
+
+### 5. Detect Days with Large Price Swings (High Price Range)
+
+**Purpose:**
+Identify days where the difference between the highest and lowest price exceeds a threshold, indicating high volatility.
+
+**Key Details:**
+
+* Calculates absolute price range as `high - low`
+* Filters days with large swings (example: > 500 units)
+* Threshold is adjustable based on asset price levels
+
+**Query:**
+
+```sql
+SELECT
+    bucket,
+    symbol,
+    high,
+    low,
+    ROUND((high - low)::numeric, 2) AS price_range
+FROM one_day_candle
+WHERE symbol = 'BTC/USD'
+AND (high - low) > 500
+ORDER BY price_range DESC;
+```
+
+---
+
+### 6. Generate Custom Time Bucket Views (Hourly, Weekly, Monthly)
+
+**Purpose:**
+Aggregate price data at different time intervals to create OHLC views for varied analysis (e.g., intraday, weekly trends).
+
+**Hourly OHLC Example:**
+
+```sql
+SELECT
+    time_bucket('1 hour', time) AS bucket,
+    symbol,
+    FIRST(price, time) AS "open",
+    MAX(price) AS high,
+    MIN(price) AS low,
+    LAST(price, time) AS "close"
+FROM crypto_sample
+WHERE symbol = 'BTC/USD'
+GROUP BY bucket, symbol
+ORDER BY bucket;
+```
+
+**Key Details:**
+
+* `time_bucket()` groups data into fixed intervals
+* Change `'1 hour'` to `'15 minutes'`, `'1 week'`, `'1 month'`, etc.
+* Ideal for raw tables like `crypto_sample` — can also be materialized using continuous aggregates
+
+---
