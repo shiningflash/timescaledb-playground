@@ -1,9 +1,9 @@
 -- Create crypto_sample table for time-series price and volume data
 CREATE TABLE crypto_sample (
-    time        TIMESTAMPTZ NOT NULL,           -- Timestamp of the event
-    symbol      TEXT         NOT NULL,           -- Cryptocurrency symbol (e.g., BTC, ETH)
-    price       DOUBLE PRECISION,                -- Price at that timestamp
-    day_volume  BIGINT,                          -- Daily traded volume
+    time        TIMESTAMPTZ   NOT NULL,         -- Timestamp of the event
+    symbol      TEXT          NOT NULL,         -- Cryptocurrency symbol (e.g., BTC, ETH)
+    price       DOUBLE PRECISION,               -- Price at that timestamp
+    day_volume  BIGINT,                         -- Daily traded volume
     PRIMARY KEY (time, symbol)                  -- Composite Primary Key for uniqueness
 );
 
