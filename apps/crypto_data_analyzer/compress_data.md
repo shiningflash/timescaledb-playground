@@ -1,4 +1,4 @@
-# 📦 Compress Time-Series Data with Hypercore (TimescaleDB Columnstore)
+# Compress Time-Series Data with Hypercore (TimescaleDB Columnstore)
 
 As your crypto datasets grow, efficiently storing and querying historical data becomes essential. TimescaleDB's **Hypercore** with native columnstore compression enables massive storage savings and query speed improvements.
 
@@ -6,15 +6,15 @@ As your crypto datasets grow, efficiently storing and querying historical data b
 
 ## 🚀 Why Compress Data?
 
-✅ Save significant disk space (up to **90x** compression possible)
-✅ Improve analytical query performance by reducing memory footprint
-✅ Retain full SQL compatibility with standard Postgres features
+- ✅ Save significant disk space (up to **90x** compression possible)
+- ✅ Improve analytical query performance by reducing memory footprint
+- ✅ Retain full SQL compatibility with standard Postgres features
 
 > **Note:** Compression ratio varies based on dataset size, distribution, and configuration.
 
 ---
 
-# 🛠️ How Hypercore Compression Works
+# How Hypercore Compression Works
 
 * Hypercore uses **native Postgres features**, no external storage formats required
 * Data converts from row-oriented to column-oriented format
@@ -23,7 +23,7 @@ As your crypto datasets grow, efficiently storing and querying historical data b
 
 ---
 
-# ⚡ Step 1: Enable Compression for Historical Data
+# Step 1: Enable Compression for Historical Data
 
 Connect to your TimescaleDB instance:
 
@@ -44,7 +44,7 @@ SET (
 
 ---
 
-# 🔄 Step 2: Automate Compression with a Policy
+# Step 2: Automate Compression with a Policy
 
 Automatically compress chunks older than 1 day:
 
@@ -65,7 +65,7 @@ Output:
 
 ---
 
-# 🏗️ Step 3: Manually Convert Existing Chunks (Optional)
+# Step 3: Manually Convert Existing Chunks (Optional)
 
 To compress already existing data immediately:
 
@@ -77,7 +77,7 @@ CALL convert_to_columnstore(c) FROM show_chunks('crypto_sample') c;
 
 ---
 
-# 📏 Step 4: Compare Dataset Size Before and After Compression
+# Step 4: Compare Dataset Size Before and After Compression
 
 ```sql
 SELECT
@@ -96,7 +96,7 @@ FROM hypertable_columnstore_stats('crypto_sample');
 
 ---
 
-# ⚡ Step 5: Experience Query Performance Improvements
+# Step 5: Experience Query Performance Improvements
 
 Running aggregated candlestick queries is now significantly faster:
 

@@ -1,16 +1,16 @@
-# 📊 Analyze Financial Tick Data with TimescaleDB
+# Analyze Financial Tick Data with TimescaleDB
 
 Efficiently convert raw, real-time cryptocurrency data into insightful candlestick views using TimescaleDB hyperfunctions and continuous aggregates.
 
 ---
 
-## 🚀 Why Use Hyperfunctions?
+## Why Use Hyperfunctions?
 
 TimescaleDB provides built-in **hyperfunctions**, making it easier to:
 
-✅ Aggregate large volumes of financial data
-✅ Generate candlestick charts with fewer SQL lines
-✅ Optimize query performance for real-time dashboards
+- ✅ Aggregate large volumes of financial data
+- ✅ Generate candlestick charts with fewer SQL lines
+- ✅ Optimize query performance for real-time dashboards
 
 Key hyperfunctions you'll use:
 
@@ -23,13 +23,13 @@ Key hyperfunctions you'll use:
 
 ---
 
-# ⚡ Step 1: Create a Continuous Aggregate
+# Step 1: Create a Continuous Aggregate
 
-### 🏦 What is a Continuous Aggregate?
+### What is a Continuous Aggregate?
 
 A materialized view that automatically maintains pre-aggregated candlestick data, significantly reducing query overhead for real-time analysis.
 
-### 🔧 Example: Create Daily OHLCV View
+### Example: Create Daily OHLCV View
 
 Connect to your TimescaleDB instance:
 
@@ -52,7 +52,7 @@ WITH (timescaledb.continuous) AS
 
 ---
 
-# ⚙️ Step 2: Add an Automatic Refresh Policy
+# Step 2: Add an Automatic Refresh Policy
 
 To keep your aggregates updated:
 
@@ -67,7 +67,7 @@ SELECT add_continuous_aggregate_policy('one_day_candle',
 
 ---
 
-# 🔍 Step 3: Query the OHLCV Data
+# Step 3: Query the OHLCV Data
 
 Example: Retrieve 14 days of Bitcoin candlestick data:
 
@@ -78,7 +78,7 @@ AND bucket >= NOW() - INTERVAL '14 days'
 ORDER BY bucket;
 ```
 
-### 📄 Sample Output:
+### Sample Output:
 
 | bucket              | symbol  | open    | high    | low     | close   | day\_volume |
 | ------------------- | ------- | ------- | ------- | ------- | ------- | ----------- |
@@ -88,14 +88,14 @@ ORDER BY bucket;
 
 ---
 
-# 📈 Step 4: Visualize OHLCV Data in Grafana
+# Step 4: Visualize OHLCV Data in Grafana
 
 ## Setup:
 
-✅ Ensure your TimescaleDB is added as a **Data Source** in Grafana
-✅ Grafana is accessible (e.g., [http://localhost:3000](http://localhost:3000))
+- ✅ Ensure your TimescaleDB is added as a **Data Source** in Grafana
+- ✅ Grafana is accessible (e.g., [http://localhost:3000](http://localhost:3000))
 
-### 🎨 Creating the Candlestick Chart:
+### Creating the Candlestick Chart:
 
 1. Go to **Dashboards → New Dashboard → Add a new panel**
 2. Select **Candlestick** from the visualization options
@@ -106,7 +106,7 @@ ORDER BY bucket;
 
 ---
 
-# 🖼️ Grafana Candlestick Chart Preview
+# Grafana Candlestick Chart Preview
 
 ![Candlestick Chart Example](./preview/grafana_candlestick.png)
 

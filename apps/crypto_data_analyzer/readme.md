@@ -1,23 +1,23 @@
-# 🚀 Crypto Data Analyzer with TimescaleDB
+# Crypto Data Analyzer with TimescaleDB
 
 Leverage **TimescaleDB Hypertables** to efficiently store, analyze, and optimize real-time cryptocurrency tick data.
 
 ---
 
-## 🗂️ Project Overview
+## Project Overview
 
 This project demonstrates:
 
-✅ High-performance storage of time-series crypto data using TimescaleDB
-✅ Real-time query capabilities optimized for financial data
-✅ Beautiful dashboards with Grafana for visual insights
-✅ Practical compression techniques for historical data
+- ✅ High-performance storage of time-series crypto data using TimescaleDB
+- ✅ Real-time query capabilities optimized for financial data
+- ✅ Beautiful dashboards with Grafana for visual insights
+- ✅ Practical compression techniques for historical data
 
 ---
 
-# ⚡ Quick Start Guide
+# Quick Start Guide
 
-## 1️⃣ Connect to Your TimescaleDB (Tiger Cloud or Local)
+## 1. Connect to Your TimescaleDB (Tiger Cloud or Local)
 
 * **Option 1:** Use Tiger Cloud SQL Editor
 * **Option 2:** Connect with `psql`:
@@ -28,7 +28,7 @@ psql "postgres://<username>:<password>@<host>:<port>/<database-name>"
 
 ---
 
-## 2️⃣ Create the Hypertable for Real-Time Crypto Data
+## 2. Create the Hypertable for Real-Time Crypto Data
 
 * Review the schema setup in:
 
@@ -40,7 +40,7 @@ Run the SQL commands inside to create the optimized hypertable structure.
 
 ---
 
-## 3️⃣ Load Financial Tick Data
+## 3. Load Financial Tick Data
 
 * Download the dataset:
 
@@ -51,8 +51,8 @@ Run the SQL commands inside to create the optimized hypertable structure.
 * Load the data using:
 
 ```sql
-\COPY crypto_sample FROM 'apps/crypto_sample/tutorial_sample_tick.csv' CSV HEADER;
-\COPY company FROM 'apps/crypto_sample/tutorial_sample_assets.csv' CSV HEADER;
+\COPY crypto_sample FROM 'apps/crypto_data_analyzer/crypto_sample/tutorial_sample_tick.csv' CSV HEADER;
+\COPY company FROM 'apps/crypto_data_analyzer/crypto_sample/tutorial_sample_assets.csv' CSV HEADER;
 ```
 
 **⚠️ Note:** Loading millions of rows may take several minutes, depending on system resources.
@@ -86,7 +86,7 @@ Password: <password>
 
 ---
 
-# 📈 Dive into Financial Data Analysis
+# Dive into Financial Data Analysis
 
 [🟢 **Analyze the Data Now** → `analyze_data.md`](./analyze_data.md)
 
@@ -94,20 +94,11 @@ Password: <password>
 
 ---
 
-# 📦 Compress Historical Data for Optimal Performance
+# Compress Historical Data for Optimal Performance
 
 [🟢 **Compress Data Now** → `compress_data.md`](./compress_data.md)
 
 > ⚡ **Highly Recommended:** Learn how to compress historical chunks using TimescaleDB’s built-in features for reduced storage and faster queries, detailed in [compress\_data.md](./compress_data.md).
-
----
-
-# 💡 Summary of Best Practices
-
-✅ Use **Hypertables** for efficient time-series storage
-✅ Visualize trends in Grafana dashboards
-✅ Apply **Compression** to optimize historical data
-✅ Explore TimescaleDB indexing, continuous aggregates, and partitioning
 
 ---
 
