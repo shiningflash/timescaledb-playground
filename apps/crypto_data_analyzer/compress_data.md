@@ -168,7 +168,7 @@ GROUP BY bucket, symbol;
 
 ---
 
-# ⚙️ Additional Notes & Options
+# Additional Notes & Options
 
 - ✔ Compression does **not** affect real-time inserts
 - ✔ Chunks automatically decompress when updated
@@ -181,7 +181,7 @@ CALL decompress_chunk('<chunk_name>');
 
 ---
 
-# 💡 Summary
+# Summary
 
 - ✅ Reduce storage costs dramatically
 - ✅ Improve analytical query speeds, especially on historical data
