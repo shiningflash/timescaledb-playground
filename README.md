@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./images/timescaledb_icon.png" alt="TimescaleDB Logo" width="50"/>
+  <img src="./images/timescale_icon.svg" alt="TimescaleDB Logo" width="100"/>
 </p>
 
 # timescaledb-playground
