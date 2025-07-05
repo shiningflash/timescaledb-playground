@@ -216,3 +216,5 @@ data/
 
 apps/crypto_sample/tutorial_sample_assets.csv
 apps/crypto_sample/tutorial_sample_tick.csv
+apps/crypto_data_analyzer/crypto_sample/tutorial_sample_tick.csv
+apps/crypto_data_analyzer/crypto_sample/tutorial_sample_assets.csv
