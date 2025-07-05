@@ -1,12 +1,40 @@
+version: "3.9"
+
 services:
+
   timescaledb:
     image: timescale/timescaledb:latest-pg15
     container_name: timescaledb_container
     environment:
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_DB=timescale_practice
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: timescale_practice
     ports:
       - "5432:5432"
     volumes:
       - ./data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Optional Grafana for TimescaleDB Monitoring (localhost:3000)
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana_container
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    depends_on:
+      timescaledb:
+        condition: service_healthy
+    volumes:
+      - grafana-data:/var/lib/grafana
+    restart: unless-stopped
+    # Comment this block to skip Grafana setup if not needed
+
+volumes:
+  grafana-data:
