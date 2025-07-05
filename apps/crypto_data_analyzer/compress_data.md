@@ -1,7 +1,3 @@
-Here’s your **extended, beginner-friendly, crystal-clear, and professional `compress_data.md`**, including all details like retention policies, manual execution process, options, and practical examples.
-
----
-
 # Compress Time-Series Data with Hypercore (TimescaleDB Columnstore)
 
 As your time-series datasets grow, efficiently storing and querying historical data becomes essential. TimescaleDB's **Hypercore**, powered by native **Columnstore Compression**, enables massive space savings and significant performance boosts — all while keeping full SQL compatibility.
@@ -56,9 +52,9 @@ SET (
 
 **Best Practices:**
 
-✔ Use `time DESC` for datasets queried from most-recent to oldest
-✔ Segment by a high-cardinality column, like `symbol` or device identifier
-✔ Adjust based on your data patterns
+- ✔ Use `time DESC` for datasets queried from most-recent to oldest
+- ✔ Segment by a high-cardinality column, like `symbol` or device identifier
+- ✔ Adjust based on your data patterns
 
 ---
 
@@ -72,11 +68,11 @@ A **compression policy** tells TimescaleDB to automatically compress chunks olde
 SELECT add_compression_policy('crypto_sample', INTERVAL '1 day');
 ```
 
-🔧 This compresses chunks once they're **older than 1 day**.
+This compresses chunks once they're **older than 1 day**.
 
 ---
 
-## ✅ **Retention Policy Details**
+## **Retention Policy Details**
 
 | Parameter    | Description                                 | Example                            |
 | ------------ | ------------------------------------------- | ---------------------------------- |
@@ -85,10 +81,8 @@ SELECT add_compression_policy('crypto_sample', INTERVAL '1 day');
 
 **Other Possibilities:**
 
-✔ Use larger intervals for critical recent data:
-`INTERVAL '30 days'` keeps last month uncompressed
-
-✔ Combine with **data retention policies** to eventually drop old data:
+- ✔ Use larger intervals for critical recent data: `INTERVAL '30 days'` keeps last month uncompressed
+- ✔ Combine with **data retention policies** to eventually drop old data:
 
 ```sql
 SELECT add_retention_policy('crypto_sample', INTERVAL '90 days');
@@ -108,7 +102,7 @@ The compression policy applies **moving forward**, but existing chunks remain un
 CALL convert_to_columnstore(c) FROM show_chunks('crypto_sample') c;
 ```
 
-✅ This compresses **all existing chunks** eligible under your policy.
+This compresses **all existing chunks** eligible under your policy.
 
 You can also compress specific chunks:
 
