@@ -20,7 +20,7 @@ CREATE INDEX idx_crypto_symbol_time ON crypto_sample (symbol, time DESC);
 ----------------------------------------------------------
 
 /*
-CREATE TABLE crypto_ticks (
+CREATE TABLE crypto_sample (
     "time" TIMESTAMPTZ,                         -- Event timestamp
     symbol TEXT,                                -- Cryptocurrency symbol
     price DOUBLE PRECISION,                     -- Price at timestamp

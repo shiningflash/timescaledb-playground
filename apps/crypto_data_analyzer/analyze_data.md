@@ -44,7 +44,7 @@ WITH (timescaledb.continuous) AS
         MIN(price) AS low,
         LAST(price, time) AS "close",
         LAST(day_volume, time) AS day_volume
-    FROM crypto_ticks
+    FROM crypto_sample
     GROUP BY bucket, symbol;
 ```
 
