@@ -32,17 +32,36 @@ A complete, step-by-step solution for storing, analyzing, compressing, and visua
 
 ### ✨ What it Includes:
 
-- ✔️ Tick-by-tick crypto trade data stored in optimized hypertables
-- ✔️ TimescaleDB hyperfunctions for generating candlestick (OHLCV) metrics
-- ✔️ Continuous aggregates for lightning-fast historical queries
-- ✔️ Columnstore compression to reduce storage footprint dramatically
-- ✔️ Beautiful Grafana dashboards for real-time visual insights
+* ✔️ Tick-by-tick crypto trade data stored in optimized hypertables
+* ✔️ TimescaleDB hyperfunctions for generating candlestick (OHLCV) metrics
+* ✔️ Continuous aggregates for lightning-fast historical queries
+* ✔️ Columnstore compression to reduce storage footprint dramatically
+* ✔️ Beautiful Grafana dashboards for real-time visual insights
 
 ### 📚 Documentation:
 
 * [Project Setup Guide](./apps/crypto_data_analyzer/README.md)
 * [Analyze Financial Data](./apps/crypto_data_analyzer/analyze_data.md)
 * [Compress Historical Data](./apps/crypto_data_analyzer/compress_data.md)
+
+---
+
+## 2. **Real-Time Ingestion Pipeline** [`apps/real_time_ingestion`](./apps/real_time_ingestion)
+
+A real-time data pipeline that streams live cryptocurrency and stock price data from Twelve Data WebSocket API directly into TimescaleDB, optimized for high-ingest workloads.
+
+### ✨ What it Includes:
+
+* ✔️ Real-time price ingestion for crypto and stock symbols using WebSocket
+* ✔️ Efficient batch inserts into TimescaleDB hypertables
+* ✔️ Segmented and time-ordered storage for fast querying
+* ✔️ Customizable batching strategy to maximize throughput
+* ✔️ Logs for monitoring event flow, batch status, and connection health
+* ✔️ Grafana integration for live dashboards on ingested data
+
+### 📚 Documentation:
+
+* [Real-Time Ingestion Setup Guide](./apps/real_time_ingestion/README.md)
 
 ---
 
