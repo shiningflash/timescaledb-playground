@@ -4,25 +4,19 @@ Stream and store real-time cryptocurrency and stock tick data directly into Time
 
 This project demonstrates:
 
-✅ High-performance time-series ingestion with batching  
-
-✅ Storing market data in TimescaleDB hypertables  
-
-✅ Optimized hypertable creation with TimescaleDB Hypercore  
-
-✅ Visualizing data with Grafana dashboards  
+* High-performance time-series ingestion with batching  
+* Storing market data in TimescaleDB hypertables  
+* Optimized hypertable creation with TimescaleDB Hypercore  
+* Visualizing data with Grafana dashboards  
 
 ---
 
 ## Prerequisites
 
-✅ Tiger Cloud or self-hosted TimescaleDB instance  
-
-✅ API key from [Twelve Data](https://twelvedata.com/), and add it to `.env`.
-
-✅ Python 3.8+  
-
-✅ `psycopg2-binary`, `twelvedata`, `websocket-client`, `python-dotenv` 
+- Tiger Cloud or self-hosted TimescaleDB instance  
+- API key from [Twelve Data](https://twelvedata.com/), and add it to `.env`.
+- Python 3.8+  
+- `psycopg2-binary`, `twelvedata`, `websocket-client`, `python-dotenv` 
 
 ---
 
@@ -106,19 +100,16 @@ Data will be inserted in batches for efficient storage.
 2. Add TimescaleDB as a new PostgreSQL data source
 3. Use connection details matching your TimescaleDB instance
 4. Enable `TimescaleDB` option during configuration
-5. Create dashboards to visualize tick data
+5. Create dashboards to visualize webhook data
 
 ---
 
 ## Notes
 
-✅ Batching improves ingestion speed and reduces overhead
-
-✅ Hypertables automatically partition your time-series data
-
-✅ Hypercore optimizes for both transactional and analytical workloads
-
-✅ You can run separate scripts for different symbol groups (e.g., stocks, crypto)
+- Batching improves ingestion speed and reduces overhead
+- Hypertables automatically partition your time-series data
+- Hypercore optimizes for both transactional and analytical workloads
+- You can run separate scripts for different symbol groups (e.g., stocks, crypto)
 
 ---
 
@@ -130,9 +121,8 @@ If you see errors like:
 TDWebSocket ERROR: Handshake status 200 OK
 ```
 
-✅ Double-check your Twelve Data API key
-
-✅ Confirm TimescaleDB is reachable
+- Double-check your Twelve Data API key
+- Confirm TimescaleDB is reachable
 
 ---
 
@@ -141,7 +131,5 @@ TDWebSocket ERROR: Handshake status 200 OK
 * [Twelve Data API](https://twelvedata.com/)
 * [TimescaleDB Documentation](https://docs.timescale.com/)
 * [Grafana Documentation](https://grafana.com/docs/grafana/latest/)
-
-````
 
 ---
