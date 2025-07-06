@@ -116,9 +116,9 @@ Understood. You want technical clarity with **what the query does, key points, a
 
 ---
 
-## Additional Essential Queries for Financial Tick Data (Clear Explanations)
+# Additional Essential Queries for Financial Tick Data
 
-The following examples demonstrate important queries using TimescaleDB for financial datasets. Each section explains the **purpose**, the **logic**, and essential details before showing the actual SQL.
+The following examples demonstrate important queries using TimescaleDB for financial datasets.
 
 ---
 
