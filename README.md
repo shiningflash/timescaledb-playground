@@ -2,7 +2,7 @@
   <img src="./images/timescale_icon.svg" alt="TimescaleDB Logo" width="400"/>
 </p>
 
-# timescaledb-playground
+# Timescaledb Playground
 
 **A Practical TimescaleDB Playground**
 Real-world projects, performance tuning, and fun experiments demonstrating how to effectively use **TimescaleDB** for time-series data, storage optimization, and real-time analytics.
