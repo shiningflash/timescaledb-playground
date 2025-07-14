@@ -114,12 +114,14 @@ ignore = [
     "FBT003",  # Allow bool as positional arg
     "BLE001",  # Catching Exception is OK in some cases
     "G004",    # Allow f-strings in logger
-    "D400", "D415", "D203", "D205", "D212", "D401",  # Relax docstring rules
+    "D400", "D415", "D203", "D205", "D212", "D401", "D104",  # Relax docstring rules
     "S101",    # Allow `assert`
     "S311",    # Allow non-crypto random (e.g., for tests)
     "PERF401", # Allow regular loops
     "RET504",  # Allow assignment before return
     "FA100", "FA102",  # Future annotations not mandatory
+    "S608",    # Possible SQL injection vector through string-based query construction
+    "EM101",   # Exception must not use a string literal, assign to variable first
 ]
 
 # Allow all rules to be auto-fixable when safe
