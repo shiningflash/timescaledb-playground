@@ -1,6 +1,5 @@
 # ----------------------------------------
 # Ruff Configuration (.ruff.toml)
-# For a Python Data Engineering / Processing Project
 # ----------------------------------------
 
 # Python version target for Ruff linting
