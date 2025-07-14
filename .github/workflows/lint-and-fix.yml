@@ -1,0 +1,42 @@
+name: Ruff Lint & Auto-Fix
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+permissions:
+  contents: write  # Needed for committing changes
+
+jobs:
+  lint:
+    name: Run Ruff Linter
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12"
+
+      - name: Install Ruff
+        uses: astral-sh/ruff-action@v3
+        with:
+          version: "latest"
+          args: "check ."
+          fix_args: "check . --fix"
+          config: ".ruff.toml"
+
+      - name: Auto Commit Lint Fixes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "style: auto-fixes applied by Ruff"
+          commit_user_name: "RuffBot"
+          commit_user_email: "ruffbot@github.com"
+          skip_dirty_check: false
+          skip_fetch: true
+          push_options: "--force-with-lease"
