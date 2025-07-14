@@ -1,0 +1,141 @@
+# ----------------------------------------
+# Ruff Configuration (.ruff.toml)
+# For a Python Data Engineering / Processing Project
+# ----------------------------------------
+
+# Python version target for Ruff linting
+target-version = "py312"
+
+# Line length and indentation (matches Black defaults)
+line-length = 88
+indent-width = 4
+
+# ----------------------------------------
+# Exclude directories (build artifacts, caches, virtualenvs, etc.)
+# ----------------------------------------
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".ipynb_checkpoints",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pyenv",
+    ".pytest_cache",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    ".vscode",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "site-packages",
+    "venv",
+]
+
+# ----------------------------------------
+# Linting Configuration
+# ----------------------------------------
+[lint]
+
+# Default groups - always useful
+select = ["E4", "E7", "E9", "F"]  # E: pycodestyle, F: pyflakes
+
+# Extend with selected plugins useful for Python data projects
+extend-select = [
+    "W",      # Pycodestyle warnings
+    "C90",    # McCabe – complexity
+    "I",      # isort – import order
+    "N",      # PEP8 naming
+    "D",      # Pydocstyle – docstring conventions
+    "UP",     # Pyupgrade – newer syntax
+    "YTT",    # Flake8-2020
+    "ASYNC",  # Flake8-async – async/await checks
+    "S",      # Flake8-bandit – security checks
+    "BLE",    # Avoid blind `except`
+    "FBT",    # Boolean trap
+    "B",      # Bugbear – common bugs
+    "A",      # Avoid built-in name misuse
+    "COM",    # Trailing comma issues
+    "C4",     # Comprehensions best practices
+    "DTZ",    # Timezone-aware datetime
+    "EM",     # Exception message formatting
+    "EXE",    # Executable file checks
+    "FA",     # Future annotations
+    "ISC",    # Implicit string concatenation
+    "ICN",    # Import conventions (e.g., np for numpy)
+    "LOG",    # Logging practices
+    "G",      # Logging format strings
+    "INP",    # Non-PEP420 package structure
+    "PIE",    # Python improvement suggestions
+    "PYI",    # Type stub file rules (if using)
+    "Q",      # Quote style consistency
+    "RSE",    # Raise statement correctness
+    "RET",    # Return statement rules
+    "SLF",    # `self` not used in method
+    "SIM",    # Simplify control flow
+    "TID",    # Tidy imports
+    "TC",     # Type-checking imports
+    "ARG",    # Unused arguments
+    "PTH",    # Use pathlib over os.path
+    "TD",     # TODO comment checks
+    "FIX",    # FIXME comment checks
+    "PD",     # Pandas-specific vetting
+    "TRY",    # Try/except usage patterns
+    "FLY",    # F-string conversions
+    "PERF",   # Performance hints
+    "FURB",   # Code refurbishing suggestions
+    "RUF",    # Ruff-specific internal rules
+
+    # The following are commented out intentionally
+    # "DJ",   # Django – not needed
+    # "FAST", # FastAPI – not used
+    # "AIR",  # Airflow – not used
+    # "PL",   # Pylint – optional, verbose
+    # "PT",   # Pytest style – enable only if writing pytest tests
+    # "NPY",  # NumPy – enable if using NumPy heavily
+    # "T10",  # Debugger – enable if you want to flag `pdb`
+]
+
+# Common ignores – allow flexibility
+ignore = [
+    "E501",    # Line too long – handled by Black
+    "TRY003",  # Allow long exception messages inline
+    "EM102",   # Allow f-strings in exceptions
+    "FBT003",  # Allow bool as positional arg
+    "BLE001",  # Catching Exception is OK in some cases
+    "G004",    # Allow f-strings in logger
+    "D400", "D415", "D203", "D205", "D212", "D401",  # Relax docstring rules
+    "S101",    # Allow `assert`
+    "S311",    # Allow non-crypto random (e.g., for tests)
+    "PERF401", # Allow regular loops
+    "RET504",  # Allow assignment before return
+    "FA100", "FA102",  # Future annotations not mandatory
+]
+
+# Allow all rules to be auto-fixable when safe
+fixable = ["ALL"]
+unfixable = []
+
+# Dummy variable naming pattern (e.g., `_`, `__var`)
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+# ----------------------------------------
+# Format settings (optional if using Ruff for formatting)
+# ----------------------------------------
+[format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+docstring-code-format = true
+docstring-code-line-length = "dynamic"
